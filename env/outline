@@ -1,0 +1,69 @@
+# Copy this file to .env, remove this comment and change the keys. For development
+# with docker this should mostly work out of the box other than setting the Slack
+# keys (for auth) and the SECRET_KEY.
+#
+# Please use `openssl rand -hex 32` to create SECRET_KEY
+SECRET_KEY=12c26f5882ba1a3e62e2046a4821176a577141f39679212d89b74480cd11472e
+UTILS_SECRET=f04f6f44e3e3787d6760ef57bf4a4c86a32e5f1c6e6e3753918b8d628c7c7e46
+
+
+# Must point to the publicly accessible URL for the installation
+URL=https://outline.simle.pl
+PORT=3000
+
+# Optional. If using a Cloudfront distribution or similar the origin server
+# should be set to the same as URL.
+CDN_URL=http://127.0.0.1:8888
+
+# enforce (auto redirect to) https in production, (optional) default is true.
+# set to false if your SSL is terminated at a loadbalancer, for example
+FORCE_HTTPS=false
+
+ENABLE_UPDATES=true
+DEBUG=cache,presenters,events,emails,mailer,utils,multiplayer,server,services
+
+# Third party signin credentials (at least one is required)
+
+# To configure Google auth, you'll need to create an OAuth Client ID at
+# => https://console.cloud.google.com/apis/credentials
+#
+# When configuring the Client ID, add an Authorized redirect URI:
+# https://<your Outline URL>/auth/google.callback
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Comma separated list of domains to be allowed (optional)
+# If not set, all Google apps domains are allowed by default
+GOOGLE_ALLOWED_DOMAINS=
+
+# Third party credentials (optional)
+GOOGLE_ANALYTICS_ID=
+SENTRY_DSN=
+
+# AWS credentials (optional in development)
+AWS_ACCESS_KEY_ID=466972c2b2d12952
+AWS_SECRET_ACCESS_KEY=218e395cb26ed452dcd3c0a4190cd6eb2be9a60bd57fca5296ea7a3b62b3537d
+AWS_REGION=xx-xxxx-x
+AWS_S3_UPLOAD_BUCKET_URL=https://outline.simle.pl
+AWS_S3_UPLOAD_MAX_SIZE=26214400
+AWS_S3_FORCE_PATH_STYLE=true
+# uploaded s3 objects permission level, default is private
+# set to "public-read" to allow public access
+AWS_S3_ACL=private
+
+# Emails configuration (optional)
+SMTP_HOST=
+SMTP_PORT=
+SMTP_USERNAME=
+SMTP_PASSWORD=
+SMTP_FROM_EMAIL=
+SMTP_REPLY_EMAIL=
+
+# Custom logo that displays on the authentication screen, scaled to height: 60px
+# TEAM_LOGO=https://example.com/images/logo.png
+
+# See translate.getoutline.com for a list of available language codes and their
+# percentage translated.
+DEFAULT_LANGUAGE=pl_PL
+PGSSLMODE=disable
+ALLOWED_DOMAINS=
