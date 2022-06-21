@@ -1,0 +1,18 @@
+# To configure generic OIDC auth, you'll need some kind of identity provider.
+# See documentation for whichever IdP you use to acquire the following info:
+# Redirect URI is https://<URL>/auth/oidc.callback
+OIDC_CLIENT_ID=02a8a69363f2e38d0c2dc441f5b5974eb48e075b
+OIDC_CLIENT_SECRET=eb702da2aca3bbe21ee79dd80751887639bcef584bc87389efff27d7af7f9a0ce8d55853761e47987bdf401c8418ec99b6383e25356294f3e71b46e120371e0c
+OIDC_AUTH_URI=https://auth.simle.pl/application/o/authorize/
+OIDC_TOKEN_URI=https://auth.simle.pl/application/o/token/
+OIDC_USERINFO_URI=https://auth.simle.pl/application/o/userinfo/
+
+# Specify which claims to derive user information from
+# Supports any valid JSON path with the JWT payload
+OIDC_USERNAME_CLAIM=preferred_username
+
+# Display name for OIDC authentication
+OIDC_DISPLAY_NAME=OpenID
+
+# Space separated auth scopes.
+OIDC_SCOPES=openid profile email
