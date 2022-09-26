@@ -13,12 +13,14 @@ services:
       timeout: 5s
     volumes:
       - database:/var/lib/postgresql/data
-      - ./scripts/posgres:/docker-entrypoint-initdb.d:ro
+      - ./scripts/postgres:/docker-entrypoint-initdb.d:ro
     env_file:
       - ./env/authentik
     environment:
-      - POSTGRES_USERS="authentik:${PG_PASS_AUTHENTIK:?database password for authentik required}|outline:${PG_PASS_OUTLINE:?database password for outline required}"
-      - POSTGRES_DATABASES="authentik:authentik|outline:outline"
+      - POSTGRES_USERS=authentik:${PG_PASS_AUTHENTIK:?database password for authentik required}|outline:${PG_PASS_OUTLINE:?database password for outline required}
+      - POSTGRES_DATABASES=authentik:authentik|outline:outline
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=${PG_PASS:?database password required}
     networks:
       - club-network
   club-redis:
@@ -39,9 +41,9 @@ services:
     environment:
       AUTHENTIK_REDIS__HOST: club-redis
       AUTHENTIK_POSTGRESQL__HOST: club-postgres
-      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
-      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS_AUTHENTIK}
       # AUTHENTIK_ERROR_REPORTING__ENABLED: "true"
       # WORKERS: 2
     volumes:
@@ -58,7 +60,7 @@ services:
       - default
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.club-authentik.rule=Host(`${MINIO_URL:?}`)"
+      - "traefik.http.routers.club-authentik.rule=Host(`${AUTHENTIK_URL:?}`)"
       - "traefik.http.routers.club-authentik.entrypoints=websecure"
       - "traefik.http.routers.club-authentik.tls=true"
       - "traefik.http.routers.club-authentik.tls.certresolver=le"
@@ -150,6 +152,9 @@ services:
 
 networks:
   default:
+    external:
+      name: common-network
+
   club-network:
 
 volumes:
