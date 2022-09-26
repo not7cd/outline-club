@@ -13,7 +13,7 @@ PORT=3000
 
 # Optional. If using a Cloudfront distribution or similar the origin server
 # should be set to the same as URL.
-CDN_URL=http://127.0.0.1:8888
+CDN_URL=https://outline.simle.pl
 
 # enforce (auto redirect to) https in production, (optional) default is true.
 # set to false if your SSL is terminated at a loadbalancer, for example
@@ -44,7 +44,7 @@ SENTRY_DSN=
 AWS_ACCESS_KEY_ID=466972c2b2d12952
 AWS_SECRET_ACCESS_KEY=218e395cb26ed452dcd3c0a4190cd6eb2be9a60bd57fca5296ea7a3b62b3537d
 AWS_REGION=xx-xxxx-x
-AWS_S3_UPLOAD_BUCKET_URL=https://outline.simle.pl
+AWS_S3_UPLOAD_BUCKET_URL=https://media.simle.pl
 AWS_S3_UPLOAD_MAX_SIZE=26214400
 AWS_S3_FORCE_PATH_STYLE=true
 # uploaded s3 objects permission level, default is private
