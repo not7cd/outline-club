@@ -98,7 +98,7 @@ services:
     command: "minio server /minio_root"
     env_file:
       - ./env/minio
-    restart: always
+    restart: unless-stopped
     networks:
       - club-network
       - default
@@ -135,7 +135,7 @@ services:
     env_file:
       - ./env/outline
       - ./env/oidc
-    restart: always
+    restart: unless-stopped
     depends_on:
       - club-postgres
       - club-redis
